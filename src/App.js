@@ -1,5 +1,7 @@
+import Pagess from "./pages/Pagess";
+
 function App() {
-  return <div className="App">khokon</div>;
+  return <Pagess />;
 }
 
 export default App;
