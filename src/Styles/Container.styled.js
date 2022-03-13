@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import Styled from "styled-components";
 
@@ -43,7 +44,7 @@ export const Gradient = Styled.div`
      
 `;
 
-export const Grid = Styled.div`
+export const Grid = Styled(motion.div)`
      display:grid;
      grid-template-columns: repeat(auto-fit,minmax(20rem,4fr));
      
@@ -93,4 +94,38 @@ svg {
 export const Searchs = Styled.div`
       width:50%;
       position:relative;
+`;
+
+export const NotFound = Styled.div`
+     font-size: 100px;
+     text-align: center;
+     margin: 14rem auto;
+     font-family:"Lobster Two";
+`;
+
+export const DitielsWrapper = Styled.div`
+     margin-top:1rem;
+     margin-bottom:5rem;
+     display:flex;
+     .active{
+         background: linear-gradient(to right, #f27121, #e94057);
+          color:#ffff;
+      border:2px solid #fff0;
+     }
+     h2{
+          margin-bottom:2rem;
+     }
+     li{
+          font-size:1.2;
+          line-height:2.5rem;
+     }
+     ul{
+          margin-top:2rem;
+     }
+
+`;
+
+export const Info = Styled.div`
+     margin-left:10rem;
+
 `;

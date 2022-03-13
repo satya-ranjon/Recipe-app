@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -22,7 +24,7 @@ h4 {
 }
 
 a {
-  font-size: 1.5rem;
+  /* font-size: 1.5rem; */
   color: rgb(56, 56, 56);
   text-decoration: none;
 }

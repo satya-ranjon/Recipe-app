@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function useCuisineFetch(url, pram) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [result, setResult] = useState(null);
-
+  const navigate = useNavigate();
   const requestFetch = async (url, id) => {
     try {
       setLoading(true);
@@ -55,7 +56,11 @@ function useCuisineFetch(url, pram) {
         } else {
           requestFetch(url, "japanese");
         }
+        break;
+      default:
+        return navigate("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url, pram]);
 
   return { loading, error, result };

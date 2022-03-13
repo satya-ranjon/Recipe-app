@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Styled from "styled-components";
 
 export const Img = Styled.img`
@@ -36,5 +37,32 @@ export const Form = Styled.form`
             left:0%;
             transform:translate(100%, -50%);
             color:#ffff;
+      }
+`;
+
+export const Button = Styled.button`
+      padding:1rem 2rem;
+      margin: 1rem;
+      color:#313131;
+      background:white;
+      border:2px solid black;
+      margin-right:2rem;
+      font-weight:600; 
+`;
+
+export const LogoIcon = Styled(Link)`
+      text-decoration:none;
+      font-size:1.5rem;
+      font-weight:400;
+      font-family: "lobster Two" , cursive;
+`;
+
+export const Nav = Styled.div`
+      padding: 4rem 0rem;
+      display: flex;
+      justify-content:flex-start
+      align-items:center;
+      svg{
+            font-size:2rem;
       }
 `;

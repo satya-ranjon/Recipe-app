@@ -1,8 +1,10 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useCuisineFetch from "../Hooks/useCuisineFetch";
 import { Card1, Grid } from "../Styles/Container.styled";
 import { Img } from "../Styles/Element.styled";
+import { AnimatePresence, motion } from "framer-motion";
+import Loading from "../components/Loading";
 
 export default function Cuisine() {
   const pram = useParams();
@@ -12,18 +14,28 @@ export default function Cuisine() {
   );
 
   return (
-    <Grid>
-      {loading && <div>Loading ....</div>}
-      {error && <div>Error ....</div>}
-      {!loading &&
-        !error &&
-        result !== null &&
-        result.results.map((recipe) => (
-          <Card1 key={recipe.id}>
-            <Img src={recipe.image} alt={recipe.title} />
-            <h4>{recipe.title} </h4>
-          </Card1>
-        ))}
-    </Grid>
+    <AnimatePresence exitBeforeEnter>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <Grid>
+          {loading && <Loading />}
+          {error && <div>Error ....</div>}
+          {!loading &&
+            !error &&
+            result !== null &&
+            result.results.map((recipe) => (
+              <Link key={recipe.id} to={`/recipe-ditiels/${recipe.id}`}>
+                <Card1>
+                  <Img src={recipe.image} alt={recipe.title} />
+                  <h4>{recipe.title} </h4>
+                </Card1>
+              </Link>
+            ))}
+        </Grid>
+      </motion.div>
+    </AnimatePresence>
   );
 }

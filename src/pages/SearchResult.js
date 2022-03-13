@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import Loading from "../components/Loading";
 import useSearchResultFetch from "../Hooks/useSearchResultFetch";
 import { Card1, Grid } from "../Styles/Container.styled";
 import { Img } from "../Styles/Element.styled";
@@ -9,19 +10,23 @@ export default function SearchResult() {
     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${pram.type}&number=16`,
     pram.type
   );
+  console.log("Search Page");
+
   return (
     <Grid>
-      {loading && <div>Loading ....</div>}
+      {loading && <Loading />}
       {error && <div>Error ....</div>}
       {!loading &&
         !error &&
         result !== null &&
         result.results.length > 0 &&
         result.results.map((recipe) => (
-          <Card1 key={recipe.id}>
-            <Img src={recipe.image} alt={recipe.title} />
-            <h4>{recipe.title} </h4>
-          </Card1>
+          <Link key={recipe.id} to={`/recipe-ditiels/${recipe.id}`}>
+            <Card1>
+              <Img src={recipe.image} alt={recipe.title} />
+              <h4>{recipe.title} </h4>
+            </Card1>
+          </Link>
         ))}
       {!loading && !error && result !== null && result.results.length === 0 && (
         <Card1>

@@ -4,6 +4,8 @@ import useVeggieFetch from "../Hooks/useVeggieFetch";
 import { Card, Gradient, Wrapper } from "../Styles/Container.styled";
 import { Img } from "../Styles/Element.styled";
 import "@splidejs/splide/dist/css/splide.min.css";
+import { Link } from "react-router-dom";
+import Loading from "./Loading";
 // or
 // import "@splidejs/splide/dist/css/themes/splide-skyblue.min.css";
 
@@ -14,7 +16,7 @@ export default function Veggie() {
   return (
     <Wrapper>
       <h4>Our Viggertrin Menu</h4>
-      {loading && <div>Loading ....</div>}
+      {loading && <Loading />}
       {error && <div>Error ....</div>}
 
       <Splide
@@ -33,11 +35,13 @@ export default function Veggie() {
           result !== null &&
           result.recipes.map((recipe) => (
             <SplideSlide key={recipe.id}>
-              <Card>
-                <p>{recipe.title} </p>
-                <Img src={recipe.image} alt={recipe.title} />
-                <Gradient />
-              </Card>
+              <Link to={`/recipe-ditiels/${recipe.id}`}>
+                <Card>
+                  <p>{recipe.title} </p>
+                  <Img src={recipe.image} alt={recipe.title} />
+                  <Gradient />
+                </Card>
+              </Link>
             </SplideSlide>
           ))}
       </Splide>
